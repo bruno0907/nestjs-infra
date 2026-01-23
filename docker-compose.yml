@@ -1,0 +1,11 @@
+services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: apps/auth-service/Dockerfile
+    container_name: auth-service
+    ports: 
+      - "3001:3001"
+    environment: 
+      JWT_SECRET: temp-jwt-secret
+    restart: unless-stopped

@@ -1,0 +1,16 @@
+services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: apps/auth-service/Dockerfile.dev
+    container_name: auth-service
+    ports:
+      - "3001:3001"
+    environment:
+      JWT_SECRET: temp-jwt-secret
+    volumes:
+      - ./apps:/app/apps
+      - ./libs:/app/libs
+      - ./nest-cli.json:/app/nest-cli.json
+      - ./tsconfig.base.json:/app/tsconfig.base.json
+    command: pnpm start:dev auth-service
